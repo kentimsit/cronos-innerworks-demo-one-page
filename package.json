@@ -1,0 +1,39 @@
+{
+    "name": "cronos-innerworks-demo-one-page",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev -p 3000",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@chakra-ui/icons": "^2.1.1",
+        "@chakra-ui/next-js": "^2.2.0",
+        "@chakra-ui/react": "^2.8.2",
+        "@emotion/react": "^11.11.3",
+        "@emotion/styled": "^11.11.0",
+        "@web3-wallet/defiwallet": "^2.4.1",
+        "@web3-wallet/metamask": "^2.4.1",
+        "@web3-wallet/react": "^2.5.0",
+        "@web3-wallet/trust-wallet": "^2.4.1",
+        "@web3-wallet/walletconnect": "^3.0.1",
+        "ethers": "^6.11.1",
+        "framer-motion": "^11.0.5",
+        "next": "14.1.0",
+        "pino-pretty": "^10.3.1",
+        "react": "^18",
+        "react-dom": "^18",
+        "zustand": "^4.5.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "eslint": "^8",
+        "eslint-config-next": "14.1.0",
+        "typechain": "^8.3.2",
+        "typescript": "^5"
+    }
+}
