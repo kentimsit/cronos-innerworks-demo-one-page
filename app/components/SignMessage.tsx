@@ -2,11 +2,11 @@
 import axios from 'axios';
 import { Signer, ethers } from "ethers";
 import { Button, Input, useToast, VStack, Text } from "@chakra-ui/react";
+import { InnerworksMetrics } from "@innerworks-me/iw-auth-sdk";
 import useStore from "@/app/store/store";
 import { currentWallet } from "../wallets";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Loading } from "./Loading";
-// import { InnerworksMetrics } from "@innerworks/iw-auth-sdk";
 
 const { useIsConnected, useAccount, useProvider } = currentWallet;
 
@@ -19,8 +19,13 @@ export function SignMessage() {
     const web3Provider = useProvider();
     const [isSignatureLoading, setIsSignatureLoading] = useState(false);
     const [message, setMessage] = useState("");
+    const [iwMetrics, setIwMetrics] = useState<any>();
     const isLoading = isSignatureLoading
     const toast = useToast();
+
+    useEffect(() => {
+        setIwMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_INNERWORKS_PROJECT_ID!));
+        },[setIwMetrics]);
 
     // `handleSignature` can only be triggered when you are connected to wallet.
     const handleSignature = useCallback(async () => {
@@ -44,7 +49,8 @@ export function SignMessage() {
                     }
                 }
             )
-            console.log("response: ", response);
+            const userId = message.toLowerCase() + ":" + (account as string).toLowerCase();
+            await iwMetrics.send(userId)
             // Check response status
             if (response.status !== 200) {
                 throw new Error("Registration failed");
@@ -63,7 +69,7 @@ export function SignMessage() {
         } finally {
             setIsSignatureLoading(false);
         }
-    }, [web3Provider, toast, message]);
+    }, [web3Provider, account, toast, message]);
 
     // return early if not connected to wallet
     if (!isConnected) return null;
