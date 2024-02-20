@@ -8,6 +8,7 @@ import { ReadChain } from "./ReadChain";
 import { WriteChain } from "./WriteChain";
 import { ShortAddress } from "./ShortAddress";
 import { WrongChainAlert } from "./WrongChainAlert";
+import { SignMessage } from "./SignMessage";
 
 const { useWalletName, useIsConnected, useAccount, useChainId, useEnsName } =
     currentWallet;
@@ -73,6 +74,10 @@ export function Welcome() {
                     <ReadChain />
                     <Spacer />
                     <WriteChain />
+                    <Spacer />
+                    <Spacer />
+                    <Spacer />
+                    <SignMessage />
                 </>
             )}
             {isConnected && !isSupportedChain && <WrongChainAlert />}
